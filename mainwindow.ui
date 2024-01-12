@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>510</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="PowerONPushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Включить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="StartPushButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>50</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Подача тока</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>300</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>26</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>MPS300</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="CurrentSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::PlusMinus</enum>
+    </property>
+    <property name="suffix">
+     <string>А</string>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ResetPushButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>90</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Сброс блокировок</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="ReadCurrentSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>125</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="suffix">
+     <string>А</string>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="ReadVoltageSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>130</y>
+      <width>125</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="suffix">
+     <string>V</string>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>140</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Радиатор</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>170</y>
+      <width>140</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Блок управления</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ReadyLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Готовность</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="RadiatorTSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>125</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="suffix">
+     <string>C</string>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="ControlboxTSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>190</y>
+      <width>125</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="suffix">
+     <string>C</string>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OutputCurrentOkLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>230</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выходной ток норма</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="NoPhaseLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Нет фазы</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="RadiatorOverheatLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>270</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Перегрев радиатора</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OvercurrentLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>310</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Превышение
+выходного тока</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="HuhLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Насыщение
+обратной связи</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ModuleTwoFaultLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>430</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ошибка модуля №2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ExternalTwoLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>350</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Внешняя
+блокировка №2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ModuleOneFaultLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ошибка модуля №1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OutputOvervoltageLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Перенапряжение
+на выходе</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CotrolBoxFaultLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>390</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Неисправность платы
+управления</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ExternalOneLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>140</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Внешняя
+блокировка №1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="whoLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>470</y>
+      <width>300</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>Igor Zhironkin jironkin@jinr.ru JINR FLNP 2024</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
