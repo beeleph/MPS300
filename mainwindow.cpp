@@ -25,19 +25,37 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << modbus->connectionParameter(QModbusDevice::NetworkAddressParameter);
         qDebug() << " modbus->connectDevice failed" + modbus->errorString();
     }
-    voltageMB = new QModbusDataUnit(QModbusDataUnit::HoldingRegisters, 2816, 2);
-    currentMB = new QModbusDataUnit(QModbusDataUnit::HoldingRegisters, 2818, 2);
-    inputVMB = new QModbusDataUnit(QModbusDataUnit::Coils, 1296, 1);
-    outputMB = new QModbusDataUnit(QModbusDataUnit::Coils, 1298, 1);
-    overheatMB = new QModbusDataUnit(QModbusDataUnit::Coils, 1297, 1);
-    overheatMBQ1 = new QModbusDataUnit(QModbusDataUnit::HoldingRegisters, 51, 2);
+    //coilsMB = new QModbusDataUnit(QModbusDataUnit::Coils, 0, 3);
+    //setCurrentMB = new QModbusDataUnit(QModbusDataUnit::HoldingRegisters, 10, 1);
+    inputRegistersMB = new QModbusDataUnit(QModbusDataUnit::InputRegisters, 0, 4);
+    discreteInputsMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 0, 13);
+    /*powerOnMB = new QModbusDataUnit(QModbusDataUnit::Coils, 1, 1);
+    startMB = new QModbusDataUnit(QModbusDataUnit::Coils, 2, 1);
+    setCurrentMB = new QModbusDataUnit(QModbusDataUnit::HoldingRegisters, 11, 1);
+    resetMB = new QModbusDataUnit(QModbusDataUnit::Coils, 3, 1);
+    readCurrentMB = new QModbusDataUnit(QModbusDataUnit::InputRegisters, 1, 1);
+    readVoltageMB = new QModbusDataUnit(QModbusDataUnit::InputRegisters, 2, 1);
+    radiatorTMB = new QModbusDataUnit(QModbusDataUnit::InputRegisters, 3, 1);
+    controlBoxTMB = new QModbusDataUnit(QModbusDataUnit::InputRegisters, 4, 1);
+    readyMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 1, 1);
+    outputCurrentOkMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 2, 1);
+    noPhaseMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 4, 1);
+    radiatorOverheatMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 5, 1);
+    hzChoMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 6, 1);
+    overcurrentMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 9, 1);
+    externalOneMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 7, 1);
+    externalTwoMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 8, 1);
+    overvoltageMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 10, 1);
+    controlBoxFaultMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 13, 1);
+    moduleOneFaultMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 11, 1);
+    moduleTwoFaultMB = new QModbusDataUnit(QModbusDataUnit::DiscreteInputs, 12, 1);*/
 
     connect(this, SIGNAL(readFinished(QModbusReply*, int)), this, SLOT(onReadReady(QModbusReply*, int)));
     readLoopTimer = new QTimer(this);
     connect(readLoopTimer, SIGNAL(timeout()), this, SLOT(readLoop()));
     readLoopTimer->start(1000);
-    onPal.setColor(QPalette::WindowText, QColor("#ef5350"));
-    offPal.setColor(QPalette::WindowText, QColor("#66bb6a"));
+    offPal.setColor(QPalette::WindowText, QColor("#ef5350"));
+    onPal.setColor(QPalette::WindowText, QColor("#66bb6a"));
 //    ui->overheatLabel->setPalette(onPal);
 //    ui->inputVlabel->setPalette(onPal);
 //    ui->outputVlabel->setPalette(onPal);
@@ -49,21 +67,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::readLoop(){
     if (modbus->errorString().isEmpty()){
-        ui->connectionLabel->setPalette(offPal);
+        ui->connectionLabel->setPalette(onPal);
     }
     else
-        ui->connectionLabel->setPalette(onPal);
-    if (auto *replyVoltage = modbus->sendReadRequest(*voltageMB, modbusSlaveID)) {
-        if (!replyVoltage->isFinished())
-            connect(replyVoltage, &QModbusReply::finished, this, [this, replyVoltage](){
-                emit readFinished(replyVoltage, 0);  // read fiinished connects to ReadReady()
+        ui->connectionLabel->setPalette(offPal);
+    /*if (auto *replyCoils = modbus->sendReadRequest(*coilsMB, modbusSlaveID)) {
+        if (!replyCoils->isFinished())
+            connect(replyCoils, &QModbusReply::finished, this, [this, replyCoils](){
+                emit readFinished(replyCoils, 0);  // read fiinished connects to ReadReady()
             });
         else
-            delete replyVoltage; // broadcast replies return immediately
+            delete replyCoils; // broadcast replies return immediately
     } else {
         statusBar()->showMessage(tr("Read error: ") + modbus->errorString(), 5000);
     }
-    if (auto *replyCurrent = modbus->sendReadRequest(*currentMB, modbusSlaveID)) {
+    if (auto *replyCurrent = modbus->sendReadRequest(*setCurrentMB, modbusSlaveID)) {
         if (!replyCurrent->isFinished())
             connect(replyCurrent, &QModbusReply::finished, this, [this, replyCurrent](){
                 emit readFinished(replyCurrent, 1);
@@ -72,34 +90,24 @@ void MainWindow::readLoop(){
             delete replyCurrent; // broadcast replies return immediately
     } else {
         statusBar()->showMessage(tr("Read error: ") + modbus->errorString(), 5000);
-    }
-    if (auto *replyInputV = modbus->sendReadRequest(*inputVMB, modbusSlaveID)) {
-        if (!replyInputV->isFinished())
-            connect(replyInputV, &QModbusReply::finished, this, [this, replyInputV](){
-                emit readFinished(replyInputV, 2);
+    }*/
+    if (auto *replyInputRegisters = modbus->sendReadRequest(*inputRegistersMB, modbusSlaveID)) {
+        if (!replyInputRegisters->isFinished())
+            connect(replyInputRegisters, &QModbusReply::finished, this, [this, replyInputRegisters](){
+                emit readFinished(replyInputRegisters, 0);
             });
         else
-            delete replyInputV; // broadcast replies return immediately
+            delete replyInputRegisters; // broadcast replies return immediately
     } else {
         statusBar()->showMessage(tr("Read error: ") + modbus->errorString(), 5000);
     }
-    if (auto *replyOutputV = modbus->sendReadRequest(*outputMB, modbusSlaveID)) {
-        if (!replyOutputV->isFinished())
-            connect(replyOutputV, &QModbusReply::finished, this, [this, replyOutputV](){
-                emit readFinished(replyOutputV, 3);
+    if (auto *replyDiscreteInputs = modbus->sendReadRequest(*discreteInputsMB, modbusSlaveID)) {
+        if (!replyDiscreteInputs->isFinished())
+            connect(replyDiscreteInputs, &QModbusReply::finished, this, [this, replyDiscreteInputs](){
+                emit readFinished(replyDiscreteInputs, 1);
             });
         else
-            delete replyOutputV; // broadcast replies return immediately
-    } else {
-        statusBar()->showMessage(tr("Read error: ") + modbus->errorString(), 5000);
-    }
-    if (auto *replyOverheat = modbus->sendReadRequest(*overheatMB, modbusSlaveID)) {
-        if (!replyOverheat->isFinished())
-            connect(replyOverheat, &QModbusReply::finished, this, [this, replyOverheat](){
-                emit readFinished(replyOverheat, 4);
-            });
-        else
-            delete replyOverheat; // broadcast replies return immediately
+            delete replyDiscreteInputs; // broadcast replies return immediately
     } else {
         statusBar()->showMessage(tr("Read error: ") + modbus->errorString(), 5000);
     }
@@ -111,35 +119,28 @@ void MainWindow::onReadReady(QModbusReply* reply, int registerId){ // that's not
         return;
     if (reply->error() == QModbusDevice::NoError) {
         const QModbusDataUnit unit = reply->result();
-        if (registerId == 2)
-            if (unit.value(0))
-                ui->inputVlabel->setPalette(onPal);
-            else
-                ui->inputVlabel->setPalette(offPal);
-        else
-        if (registerId == 3)
-            if (unit.value(0))
-                ui->outputVlabel->setPalette(onPal);
-            else
-                ui->outputVlabel->setPalette(offPal);
-        else
-        if (registerId == 4)
-            if (unit.value(0))
-                ui->overheatLabel->setPalette(onPal);
-            else
-                ui->overheatLabel->setPalette(offPal);
-        else{
-            float tmp = 0;
-            unsigned short data[2];
-            data[1] = unit.value(0);
-            data[0] = unit.value(1);
-            memcpy(&tmp, data, 4);
-            if (registerId == 0){          // voltage register
-                this->ui->Vlcd->display(tmp);
-            }
-            else if (registerId == 1) {                       // current register
-                ui->Ilcd->display(tmp);
-            }
+        if (unit.value(0))
+        switch (registerId) {
+        case 0: // input registers
+            ui->ReadCurrentSpinBox->setValue(unit.value(0)/100);
+            ui->ReadVoltageSpinBox->setValue(unit.value(1)/1000);
+            ui->RadiatorTSpinBox->setValue(unit.value(2/10));
+            ui->ControlboxTSpinBox->setValue(unit.value(3/10));
+            break;
+        case 1:
+            ui->ReadyLabel->setPalette(unit.value(0) ? onPal : offPal);
+            ui->OutputCurrentOkLabel->setPalette(unit.value(1) ? onPal : offPal);
+            ui->NoPhaseLabel->setPalette(unit.value(3) ? onPal : offPal);
+            ui->RadiatorOverheatLabel->setPalette(unit.value(4) ? onPal : offPal);
+            ui->HuhLabel->setPalette(unit.value(5) ? onPal : offPal);
+            ui->ExternalOneLabel->setPalette(unit.value(6) ? onPal : offPal);
+            ui->ExternalTwoLabel->setPalette(unit.value(7) ? onPal : offPal);
+            ui->OvercurrentLabel->setPalette(unit.value(8) ? onPal : offPal);
+            ui->OutputOvervoltageLabel->setPalette(unit.value(9) ? onPal : offPal);
+            ui->ModuleOneFaultLabel->setPalette(unit.value(10) ? onPal : offPal);
+            ui->ModuleTwoFaultLabel->setPalette(unit.value(11) ? onPal : offPal);
+            ui->ControlBoxFaultLabel->setPalette(unit.value(12) ? onPal : offPal);
+            break;
         }
     } else if (reply->error() == QModbusDevice::ProtocolError) {
         statusBar()->showMessage(tr("Read response error: %1 (Mobus exception: 0x%2)").
@@ -212,3 +213,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_PowerONPushButton_toggled(bool checked)
+{
+    writeRegister(0, checked);
+}
+
+void MainWindow::on_StartPushButton_toggled(bool checked)
+{
+    writeRegister(1, checked);
+}
+
+void MainWindow::on_CurrentSpinBox_valueChanged(int arg1)
+{
+    writeRegister(10, arg1*100);
+}
+
+void MainWindow::on_ResetPushButton_clicked()
+{
+    writeRegister(2, true);
+    QTimer::singleShot(500, this, &MainWindow::resetResetButton);
+}
+
+void MainWindow::resetResetButton(){
+    writeRegister(2, false);
+}

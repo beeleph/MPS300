@@ -25,12 +25,29 @@ private:
     Ui::MainWindow *ui;
     QModbusTcpClient *modbus = nullptr;
     QSettings *settings;
-    QModbusDataUnit *voltageMB = nullptr;
-    QModbusDataUnit *currentMB = nullptr;
-    QModbusDataUnit *inputVMB = nullptr;
-    QModbusDataUnit *outputMB = nullptr;
-    QModbusDataUnit *overheatMB = nullptr;
-    QModbusDataUnit *overheatMBQ1 = nullptr;
+    QModbusDataUnit *powerOnMB = nullptr;
+    QModbusDataUnit *startMB = nullptr;
+    QModbusDataUnit *setCurrentMB = nullptr;
+    QModbusDataUnit *resetMB = nullptr;
+    QModbusDataUnit *readCurrentMB = nullptr;
+    QModbusDataUnit *readVoltageMB = nullptr;
+    QModbusDataUnit *radiatorTMB = nullptr;
+    QModbusDataUnit *controlBoxTMB = nullptr;
+    QModbusDataUnit *readyMB = nullptr;
+    QModbusDataUnit *outputCurrentOkMB = nullptr;
+    QModbusDataUnit *noPhaseMB = nullptr;
+    QModbusDataUnit *radiatorOverheatMB = nullptr;
+    QModbusDataUnit *hzChoMB = nullptr;
+    QModbusDataUnit *overcurrentMB = nullptr;
+    QModbusDataUnit *externalOneMB = nullptr;
+    QModbusDataUnit *externalTwoMB = nullptr;
+    QModbusDataUnit *overvoltageMB = nullptr;
+    QModbusDataUnit *controlBoxFaultMB = nullptr;
+    QModbusDataUnit *moduleOneFaultMB = nullptr;
+    QModbusDataUnit *moduleTwoFaultMB = nullptr;
+    QModbusDataUnit *coilsMB = nullptr;
+    QModbusDataUnit *inputRegistersMB = nullptr;
+    QModbusDataUnit *discreteInputsMB = nullptr;
     QTimer *readLoopTimer;
     QPalette onPal, offPal;
     int modbusSlaveID = 0, msleep = 500;
@@ -41,8 +58,12 @@ signals:
 private slots:
     void onReadReady(QModbusReply* reply, int registerId);
     void readLoop();
-    void timeToStop();
     void writeRegister(int registerAddr, bool value);
     void writeRegister(int registerAddr, int value);
+    void on_PowerONPushButton_toggled(bool checked);
+    void on_StartPushButton_toggled(bool checked);
+    void on_CurrentSpinBox_valueChanged(int arg1);
+    void on_ResetPushButton_clicked();
+    void resetResetButton(); // :)
 };
 #endif // MAINWINDOW_H

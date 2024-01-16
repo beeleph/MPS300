@@ -26,6 +26,9 @@
     <property name="text">
      <string>Включить</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="StartPushButton">
     <property name="geometry">
@@ -39,13 +42,16 @@
     <property name="text">
      <string>Подача тока</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>300</width>
+      <width>151</width>
       <height>40</height>
      </rect>
     </property>
@@ -371,7 +377,7 @@
 на выходе</string>
     </property>
    </widget>
-   <widget class="QLabel" name="CotrolBoxFaultLabel">
+   <widget class="QLabel" name="ControlBoxFaultLabel">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -416,6 +422,22 @@
     </property>
     <property name="text">
      <string>Igor Zhironkin jironkin@jinr.ru JINR FLNP 2024</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="connectionLabel">
+    <property name="geometry">
+     <rect>
+      <x>149</x>
+      <y>20</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Соединение</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
