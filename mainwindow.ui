@@ -23,6 +23,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Включить</string>
     </property>
@@ -38,6 +43,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Подача тока</string>
@@ -76,6 +86,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
@@ -101,11 +116,16 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Сброс блокировок</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="ReadCurrentSpinBox">
+   <widget class="QDoubleSpinBox" name="ReadCurrentDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -113,6 +133,11 @@
       <width>125</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -124,16 +149,13 @@
      <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
     <property name="suffix">
-     <string>А</string>
+     <string>A</string>
     </property>
     <property name="maximum">
-     <number>300</number>
-    </property>
-    <property name="singleStep">
-     <number>1</number>
+     <double>300.990000000000009</double>
     </property>
    </widget>
-   <widget class="QSpinBox" name="ReadVoltageSpinBox">
+   <widget class="QDoubleSpinBox" name="ReadVoltageDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -141,6 +163,11 @@
       <width>125</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -154,12 +181,6 @@
     <property name="suffix">
      <string>V</string>
     </property>
-    <property name="maximum">
-     <number>300</number>
-    </property>
-    <property name="singleStep">
-     <number>1</number>
-    </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -169,6 +190,11 @@
       <width>140</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Радиатор</string>
@@ -183,6 +209,11 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Блок управления</string>
     </property>
@@ -196,6 +227,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Готовность</string>
     </property>
@@ -208,6 +244,11 @@
       <width>125</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -237,6 +278,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
@@ -265,6 +311,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Выходной ток норма</string>
     </property>
@@ -277,6 +328,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Нет фазы</string>
@@ -291,6 +347,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Перегрев радиатора</string>
     </property>
@@ -303,6 +364,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Превышение
@@ -318,6 +384,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Насыщение
 обратной связи</string>
@@ -332,6 +403,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Ошибка модуля №2</string>
     </property>
@@ -344,6 +420,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Внешняя
@@ -359,6 +440,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Ошибка модуля №1</string>
     </property>
@@ -371,6 +457,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Перенапряжение
@@ -386,6 +477,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Неисправность платы
 управления</string>
@@ -399,6 +495,11 @@
       <width>140</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Внешняя
@@ -416,7 +517,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>6</pointsize>
       <italic>true</italic>
      </font>
     </property>
@@ -435,6 +536,11 @@
       <width>141</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Соединение</string>
