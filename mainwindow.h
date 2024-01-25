@@ -48,19 +48,6 @@ private:
     QModbusDataUnit *coilsMB = nullptr;
     QModbusDataUnit *inputRegistersMB = nullptr;
     QModbusDataUnit *discreteInputsMB = nullptr;
-    QModbusDataUnit *discreteInputsMB1 = nullptr;
-    QModbusDataUnit *discreteInputsMB2 = nullptr;
-    QModbusDataUnit *discreteInputsMB3 = nullptr;
-    QModbusDataUnit *discreteInputsMB4 = nullptr;
-    QModbusDataUnit *discreteInputsMB5 = nullptr;
-    QModbusDataUnit *discreteInputsMB6 = nullptr;
-    QModbusDataUnit *discreteInputsMB7 = nullptr;
-    QModbusDataUnit *discreteInputsMB8 = nullptr;
-    QModbusDataUnit *discreteInputsMB9 = nullptr;
-    QModbusDataUnit *discreteInputsMB10 = nullptr;
-    QModbusDataUnit *discreteInputsMB11 = nullptr;
-    QModbusDataUnit *discreteInputsMB12 = nullptr;
-    QModbusDataUnit *inputRegistersMB2 = nullptr;
     QTimer *readLoopTimer;
     QPalette onPal, offPal;
     int modbusSlaveID = 0, msleep = 500;
@@ -78,5 +65,7 @@ private slots:
     void on_CurrentSpinBox_valueChanged(int arg1);
     void on_ResetPushButton_clicked();
     void resetResetButton(); // :)
+    void on_exitButton_clicked();
+    void timeToStop();
 };
 #endif // MAINWINDOW_H

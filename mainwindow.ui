@@ -19,12 +19,13 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>140</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
@@ -38,14 +39,15 @@
    <widget class="QPushButton" name="StartPushButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>155</x>
       <y>50</y>
-      <width>140</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
@@ -67,7 +69,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>26</pointsize>
+      <pointsize>22</pointsize>
      </font>
     </property>
     <property name="text">
@@ -82,13 +84,13 @@
      <rect>
       <x>10</x>
       <y>90</y>
-      <width>140</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="alignment">
@@ -110,14 +112,15 @@
    <widget class="QPushButton" name="ResetPushButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>155</x>
       <y>90</y>
-      <width>140</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
@@ -130,13 +133,13 @@
      <rect>
       <x>10</x>
       <y>130</y>
-      <width>125</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="alignment">
@@ -158,15 +161,15 @@
    <widget class="QDoubleSpinBox" name="ReadVoltageDoubleSpinBox">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>155</x>
       <y>130</y>
-      <width>125</width>
+      <width>135</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="alignment">
@@ -193,6 +196,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
@@ -203,19 +207,21 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>170</y>
+      <x>155</x>
+      <y>160</y>
       <width>140</width>
-      <height>16</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Блок управления</string>
+     <string>Блок 
+управления</string>
     </property>
    </widget>
    <widget class="QLabel" name="ReadyLabel">
@@ -239,15 +245,15 @@
    <widget class="QSpinBox" name="RadiatorTSpinBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>190</y>
-      <width>125</width>
+      <x>90</x>
+      <y>164</y>
+      <width>55</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="alignment">
@@ -272,15 +278,15 @@
    <widget class="QSpinBox" name="ControlboxTSpinBox">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>190</y>
-      <width>125</width>
+      <x>235</x>
+      <y>164</y>
+      <width>55</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="alignment">
@@ -528,25 +534,26 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="connectionLabel">
+   <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
-      <x>149</x>
-      <y>20</y>
-      <width>141</width>
-      <height>20</height>
+      <x>150</x>
+      <y>10</y>
+      <width>140</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Соединение</string>
+     <string>Выход</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
