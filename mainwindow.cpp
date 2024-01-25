@@ -17,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     if (!modbus) {
         statusBar()->showMessage(tr("Could not create Modbus master."), 5000);
     }
-    modbus->setConnectionParameter(QModbusDevice::NetworkAddressParameter, "192.168.0.82");//settings->value("MKON_IP", "192.168.1.99"));
+    //modbus->setConnectionParameter(QModbusDevice::NetworkAddressParameter, "192.168.0.82");//settings->value("MKON_IP", "192.168.1.99"));
+    modbus->setConnectionParameter(QModbusDevice::NetworkAddressParameter, settings->value("ip", "192.168.0.82").toString());
     modbus->setConnectionParameter(QModbusDevice::NetworkPortParameter, "502");
     modbus->setTimeout(3000);
     if (!modbus->connectDevice()) {
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     readLoopTimer->start(1000);
     offPal.setColor(QPalette::WindowText, QColor("#ef5350"));
     onPal.setColor(QPalette::WindowText, QColor("#66bb6a"));
+    QTimer::singleShot(500, this, &MainWindow::readCurrent);
 }
 
 void MainWindow::readLoop(){
@@ -41,6 +43,7 @@ void MainWindow::readLoop(){
         ui->label->setPalette(onPal);
     }
     else{
+        qDebug() << modbus->errorString();
         ui->label->setPalette(offPal);
     }
     if (auto *replyDiscreteInputs = modbus->sendReadRequest(*discreteInputsMB, modbusSlaveID)) {
@@ -196,6 +199,7 @@ void MainWindow::resetResetButton(){
 
 void MainWindow::on_exitButton_clicked()
 {
+    settings->setValue("I", ui->CurrentSpinBox->value());
     on_CurrentSpinBox_valueChanged(0);
     on_StartPushButton_toggled(false);
     on_PowerONPushButton_toggled(false);
@@ -208,4 +212,8 @@ void MainWindow::on_exitButton_clicked()
 
 void MainWindow::timeToStop(){
     QCoreApplication::exit();
+}
+
+void MainWindow::readCurrent(){
+    ui->CurrentSpinBox->setValue(settings->value("I", 0).toInt());
 }

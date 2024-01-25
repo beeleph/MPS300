@@ -67,5 +67,6 @@ private slots:
     void resetResetButton(); // :)
     void on_exitButton_clicked();
     void timeToStop();
+    void readCurrent();
 };
 #endif // MAINWINDOW_H
